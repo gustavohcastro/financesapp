@@ -7,6 +7,7 @@ export const AuthContext = createContext({});
 function AuthProvider({ children }){
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [loadingAuth, setLoadingAuth] = useState(false)
 
     //Verifica se tem usuario no AsyncStorage
     useEffect(()=>{
@@ -24,6 +25,7 @@ function AuthProvider({ children }){
 
     //Login de usuario
     async function signIn(email, password){
+        setLoadingAuth(true);
         await firebase.auth().signInWithEmailAndPassword(email, password)
         .then( async(value)=>{
             let uid = value.user.uid;
@@ -36,12 +38,17 @@ function AuthProvider({ children }){
                 }
                 setUser(data);
                 storageUser(data);
+                setLoadingAuth(false);
             })
         })
-        .catch( error => alert(error.code))
+        .catch( error => {
+            alert(error.code)
+            setLoadingAuth(false);
+        })
     }
     //Cadastro de Usuario no firebase
     async function signUp(email, password, nome) {
+        setLoadingAuth(true);
         await firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(async (value)=>{
             let uid = value.user.uid;
@@ -57,7 +64,11 @@ function AuthProvider({ children }){
                 }
                 setUser(data);
                 storageUser(data);
+                setLoadingAuth(false)
             })
+        }).catch( (error) => {
+            alert(error.code);
+            setLoadingAuth(false)
         })
     }
     //Grave no AsyncStorage
@@ -79,7 +90,7 @@ function AuthProvider({ children }){
     }
 
     return(
-        <AuthContext.Provider value={{ signed : !!user ,user, loading, signOut, signUp, signIn}}>
+        <AuthContext.Provider value={{ signed : !!user ,user, loading, loadingAuth, signOut, signUp, signIn}}>
             {children}
         </AuthContext.Provider>
     )
