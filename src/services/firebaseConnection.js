@@ -3,14 +3,15 @@ import 'firebase/auth';
 import 'firebase/database';
 
 let firebaseConfig = {
-    apiKey: "AIzaSyBYAtWtFE59sJxPky-RpBfXpVH0jAhZ9jM",
-    authDomain: "meua-10f40.firebaseapp.com",
-    databaseURL: "https://meua-10f40.firebaseio.com",
-    projectId: "meua-10f40",
-    storageBucket: "meua-10f40.appspot.com",
-    messagingSenderId: "594518505452",
-    appId: "1:594518505452:web:84b36f1c3859a6856af2c9",
-    measurementId: "G-FQ770YEZ8V"
+  apiKey: "AIzaSyAGStaFo3W2iY37syRQ56BTRL3XSiKPgsQ",
+    authDomain: "newbank-6b11f.firebaseapp.com",
+    databaseURL: "https://newbank-6b11f.firebaseio.com",
+    projectId: "newbank-6b11f",
+    storageBucket: "newbank-6b11f.appspot.com",
+    messagingSenderId: "953022458465",
+    appId: "1:953022458465:web:4c0396b27f580528669820",
+    measurementId: "G-L66ZMCTLH7"
+    
   };
   // Initialize Firebase
   if(!firebase.apps.length) {
