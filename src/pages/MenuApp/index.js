@@ -62,6 +62,7 @@ export default function MenuApp() {
     )
   }
 
+  
   async function handleDeleteSuccess(data){
     await firebase.database().ref('historico').child(uid).child(data.key).remove().then( async ()=> {
       
